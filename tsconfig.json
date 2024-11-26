@@ -1,0 +1,15 @@
+{
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "CommonJS",
+        "moduleResolution": "node",
+        "allowUmdGlobalAccess": true,
+        "resolveJsonModule": true,
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    }
+}
