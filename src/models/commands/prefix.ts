@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { Command, CommandOptions } from ".";
+import { Command, CommandOptions } from "./command";
 
 export interface PrefixCommandOptions extends CommandOptions {
     name: string;

@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
-import { Command, CommandOptions } from ".";
+import { Command, CommandOptions } from "./command";
 
 export interface SlashCommandOptions extends CommandOptions {
     data: SlashCommandBuilder;
