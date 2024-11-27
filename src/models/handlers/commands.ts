@@ -12,7 +12,7 @@ import { allPrefixCommands, allSlashCommands } from "../../commands";
 
 export class CommandsHandler {
     public bot: FumoBot;
-    private readonly logger = new Logger("CommandsHandler");
+    private readonly logger = new Logger("Handlers.Commands");
     // TODO: Cooldowns handling
     // private cooldowns: Collection<string, Collection<string, number>> = new Collection();
     private prefixCommands: Collection<string, PrefixCommand> = new Collection();
