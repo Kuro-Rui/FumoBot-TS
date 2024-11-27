@@ -29,9 +29,9 @@ export class FumoBot extends Client {
     }
 
     public async isOwner(userID: string): Promise<boolean> {
-        const application = await this.application?.fetch();
-        if (!application) return false;
+        if (!this.application) return false;
 
+        const application = await this.application.fetch();
         if (!application.owner) return false;
         if (application.owner instanceof User) return application.owner.id === userID;
         else return application.owner.members.map((member) => member.id).includes(userID);
