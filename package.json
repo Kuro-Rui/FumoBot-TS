@@ -1,7 +1,7 @@
 {
     "name": "fumobot",
     "version": "0.0.1",
-    "description": "A general-purpose Discord bot with fun commands inspired by high-quality plush Touhou Project character figures.",
+    "description": "A general-purpose Discord bot inspired by high-quality plush Touhou Project character figures.",
     "main": "dist/src/index.js",
     "scripts": {
         "dev": "tsx watch ./src/index.ts",

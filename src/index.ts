@@ -15,6 +15,8 @@ export const fumo = new FumoBot({
     mobile: true,
 });
 
+// TODO: Add events handler
+
 fumo.on(Events.MessageCreate, async (message) => {
     if (message.author.bot) return;
 
@@ -28,47 +30,18 @@ fumo.on(Events.MessageCreate, async (message) => {
 
     const args = message.content.slice(usedPrefix.length).trim().split(/\s+/g);
     const commandName = args.shift()?.toLowerCase();
-    const command = commandName ? fumo.prefixCommands.get(commandName) : undefined;
-    if (!command) {
-        fumo.logger.error(`Unknown prefix command: ${commandName}`);
-        return;
-    }
-    if (command.devOnly && !fumo.isOwner(message.author.id)) return;
+    if (!commandName) return;
 
-    try {
-        await command.execute(message, args);
-    } catch (error) {
-        fumo.logger.error(error as string);
-        await message.reply({
-            content: "An error occured while running this command.",
-            allowedMentions: { repliedUser: false },
-            failIfNotExists: false,
-        });
-    }
+    await fumo.handlers.commands.handlePrefixCommand(message, commandName, args);
 });
 
 fumo.on(Events.InteractionCreate, async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
 
-    const command = fumo.slashCommands.get(interaction.commandName);
-    if (!command) {
-        fumo.logger.error(`Slash command "${interaction.commandName}" not found.`);
-        return;
-    }
-
-    try {
-        await command.execute(interaction);
-    } catch (error) {
-        fumo.logger.error(error as string);
-        const options = {
-            content: "An error occured while running this command.",
-            ephemeral: true,
-        };
-        if (interaction.replied || interaction.deferred) await interaction.followUp(options);
-        else await interaction.reply(options);
-    }
+    await fumo.handlers.commands.handleSlashCommand(interaction);
 });
 
+console.clear();
 fumo.start();
 
-process.on("SIGINT", async () => await fumo.destroy());
+process.on("SIGINT", () => fumo.destroy());
