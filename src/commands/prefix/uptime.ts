@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { PrefixCommand } from "../../models/commands/prefix";
+import { PrefixCommand } from "../../models/commands";
 import { formatDuration } from "../../utils/time";
 
 export class UptimePrefixCommand extends PrefixCommand {

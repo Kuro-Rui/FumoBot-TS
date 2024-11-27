@@ -1,7 +1,7 @@
 import { Message } from "discord.js";
 import { inspect } from "util";
 import { FumoBot } from "../../models/bot";
-import { PrefixCommand } from "../../models/commands/prefix";
+import { PrefixCommand } from "../../models/commands";
 
 export class EvalPrefixCommand extends PrefixCommand {
     constructor() {

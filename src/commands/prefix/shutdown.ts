@@ -1,5 +1,5 @@
 import { Message } from "discord.js";
-import { PrefixCommand } from "../../models/commands/prefix";
+import { PrefixCommand } from "../../models/commands";
 
 export class ShutdownPrefixCommand extends PrefixCommand {
     constructor() {
