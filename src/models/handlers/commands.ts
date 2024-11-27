@@ -73,7 +73,7 @@ export class CommandsHandler {
             })
             .then((data) => {
                 this.logger.info(
-                    `Successfully refreshed ${(data as any[]).length} slash commands.`,
+                    `Successfully refreshed ${(data as any[]).length} slash commands!`,
                 );
             })
             .catch((error) => {

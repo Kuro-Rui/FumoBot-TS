@@ -1,4 +1,4 @@
-import { Client, ClientOptions, User } from "discord.js";
+import { Client, ClientOptions, TeamMemberRole, User } from "discord.js";
 import { Logger } from "./logger";
 import { CommandsHandler } from "./handlers/commands";
 
@@ -32,8 +32,19 @@ export class FumoBot extends Client {
         if (!this.application) return false;
 
         const application = await this.application.fetch();
-        if (!application.owner) return false;
+        if (!application.owner) {
+            this.logger.error(`Application "${application.name}" doesn't have an owner!`);
+            return false;
+        }
+
         if (application.owner instanceof User) return application.owner.id === userID;
-        else return application.owner.members.map((member) => member.id).includes(userID);
+        else {
+            return application.owner.members.some((member) => {
+                return (
+                    member.id === userID &&
+                    [TeamMemberRole.Admin, TeamMemberRole.Developer].includes(member.role)
+                );
+            });
+        }
     }
 }
