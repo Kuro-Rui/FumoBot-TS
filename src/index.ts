@@ -36,9 +36,9 @@ fumo.on(Events.MessageCreate, async (message) => {
 });
 
 fumo.on(Events.InteractionCreate, async (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
-
-    await fumo.handlers.commands.handleSlashCommand(interaction);
+    if (interaction.isChatInputCommand()) {
+        await fumo.handlers.commands.handleSlashCommand(interaction);
+    }
 });
 
 console.clear();

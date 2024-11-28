@@ -116,8 +116,6 @@ export class CommandsHandler {
     }
 
     public async handleSlashCommand(interaction: ChatInputCommandInteraction): Promise<void> {
-        if (!interaction.isChatInputCommand()) return;
-
         const command = this.getSlashCommand(interaction.commandName);
         if (!command) {
             this.logger.error(`Slash command "${interaction.commandName}" not found.`);
